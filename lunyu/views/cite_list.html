@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="stylesheet" href="/public/css/bulma.css">
+  <link rel="stylesheet" href="/public/css/font-awesome.css">
+
+  <title>名言</title>
+</head>
+<body>
+<div class="container is-fluid">
+<nav class="level">
+  <p class="level-item has-text-centered">
+    <a class="link is-info" href="/new">记一笔</a>
+  </p>
+</nav>
+
+<form action="/list" method="post">
+  <div class="field is-grouped">
+    <p class="control is-expanded">
+      <input class="input" type="text" name="tags" id="tags" placeholder="Find tags" value="{{.tags}}">
+    </p>
+    <p class="control">
+      <button class="button is-primary" type="submit">
+        Search
+      </button>
+    </p>
+  </div>
+</form>
+
+<div class="columns is-multiline">
+{{range .cites}}
+  <div class="column is-one-quarter">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">
+          <a class="level-item" href="/edit?id={{.ID}}">
+            <span class="icon is-small"><i class="fa fa-reply"></i></span>
+          </a>
+          {{.Seq}}
+          <small>
+            {{range .Tags | split}}
+            <span class="tag is-light"><a href="#" class="cite-tag">{{.}}</a></span>
+            {{end}}
+          </small>
+        </p>
+
+      </header>
+
+      <div class="card-content">
+        <div class="content">
+          {{.Content}}
+
+          <small>
+            <a href="/findRefs?id={{.ID}}">
+              <span class="icon is-small"><i class="fa fa-retweet"></i></span>
+            </a>
+            {{range .Refs | split}}
+            <span class="tag is-light">{{.}}</span>
+            {{end}}
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+{{end}}
+</div>
+
+</div>
+<script src="/public/js/jquery.min.js"></script>
+
+<script>
+
+  $("a.cite-tag").click(function () {
+    var tag = $(this).text()
+
+    var tags = $("#tags").val()
+    var n = tags.includes(tag)
+    if (n === false) {
+      if (tags.length === 0) {
+        tags = tag
+      } else {
+        tags = tags + " " + tag
+      }
+    } else {
+      tags = tags.replace(tag, "")
+      tags = tags.replace("  ", " ")
+      tags = tags.trim()
+    }
+
+    $("#tags").val(tags)
+
+    return false
+  })
+
+</script>
+</body>
+</html>

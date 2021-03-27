@@ -1,0 +1,33 @@
+<body>
+<h1> 请尽快完成下列事项，谢谢配合。<h1>
+<h3> 共 {{ .TotalCount}} 项，请<a href="server22:8000/">登录系统</a>处理 </h3>
+<h5> 如果您已经处理完毕，请忽略此邮件。本邮件由系统自动产生，请勿回复！</h5> 
+
+ <style>
+        table,table tr th, table tr td { border:1px solid #0094ff; text-align: center}      
+ </style>
+	
+<table border="1" style="width: 800px; font-size:16;">
+  <tr>
+    
+    <th style="width:8%">类型</th>
+    <th style="width:20%">活动</th>
+    <th style="width:35%">事项</th>
+	<th style="width:10%">责任人</th>
+	<th style="width:15%">到期日</th>
+	<th style="width:10%">状态</th>
+  </tr>
+  {{ range $index, $v := .Items }}
+  <tr>
+
+    <td>{{ $v.Category }}</td>
+    <td>{{ $v.RefTitle }}</td>
+    <td>{{ $v.Content }}</td>
+	<td>{{ $v.OwnerName }}</td>
+	<td>{{ $v.DueDate }}</td>
+	<td>{{ $v.Status }}</td>
+  </tr>
+  {{ end }}
+</table>
+
+</body>

@@ -1,0 +1,7 @@
+update  PU_ArrivalVouchs set
+  iQuantity = {{ .Quantity }}
+ from PU_ArrivalVouchs i
+inner join PU_ArrivalVouch b on i.ID = b.ID
+where 1 = 1
+  and b.cCode = '{{ .OrderNum }}'
+  and i.ivouchrowno =  {{ .RowNo }} ;

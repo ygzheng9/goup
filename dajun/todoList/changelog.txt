@@ -1,0 +1,23 @@
+2017/10/28
+1. t_event 增加 EVENT_STATUS
+
+ALTER TABLE `world`.`t_event`
+ADD COLUMN `EVENT_STATUS` VARCHAR(20) NULL AFTER `MATRL_DESC`;
+
+ALTER TABLE `world`.`t_dept`
+ADD COLUMN `DISP_SEQ` INT NULL AFTER `DEPT_NME`;
+
+2017/11/17
+1. add t_diskspace
+
+
+2017/11/21
+1. add t_dly_task
+2. add t_review
+3. add t_review_log
+
+2017/11/24
+1. add t_actvy_log
+
+2017/11/27
+1. add T_BOM_WATCHLIST

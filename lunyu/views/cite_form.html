@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/public/css/bulma.css">
+  <title>名言</title>
+</head>
+<body>
+<div class="container">
+  <form action="/createCite" method="post">
+    <input id="id" name="id" type="hidden" value="{{.ID}}">
+    <div class="field">
+      <label class="label">编号</label>
+      <p class="control">
+        <input class="input" type="text" name="seq" placeholder="Text input" value="{{.Seq}}">
+      </p>
+    </div>
+    <div class="field">
+      <label class="label">内容</label>
+      <p class="control">
+        <textarea class="textarea" name="content" placeholder="Textarea">{{.Content}}</textarea>
+      </p>
+    </div>
+    <div class="field">
+      <label class="label">标签</label>
+      <p class="control">
+        <input class="input" type="text" name="tags" placeholder="Text input" value="{{.Tags}}">
+      </p>
+    </div>
+    <div class="field">
+      <label class="label">参考</label>
+      <p class="control">
+        <input class="input" type="text" name="refs" placeholder="Text input" value="{{.Refs}}">
+      </p>
+    </div>
+
+    <div class="field is-grouped">
+      <p class="control">
+        <button class="button is-primary" type="submit">保存</button>
+      </p>
+      <p class="control">
+        <a class="button" href="/list">返回列表</a>
+      </p>
+    </div>
+  </form>
+</div>
+</body>
+</html>
